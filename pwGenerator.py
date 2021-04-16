@@ -46,7 +46,7 @@ def crack(arr, len):
       
 # Driver Code
 #arr = ['g','d','g','3','1','2']
-arr = ['G','D','O','1','3','2']
+arr = ['G','D']
 len = len(arr)
 crack(arr, len)
 file1.close()
