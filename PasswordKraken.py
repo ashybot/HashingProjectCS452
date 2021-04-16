@@ -2,8 +2,12 @@
 urllib : http related libary
 urllib.urlopen : open file from url
 hashlib : hash algorithms to use in code
+time it for time tracking libary
 '''
+from timeit import default_timer as timer
 from urllib.request import urlopen, hashlib
+
+start = timer()
 
 # Step 1: Request hashes to crack from the user 
 hash_file_name=input("Enter the name of the .txt file that holds the hashes to crack: ")
@@ -41,3 +45,7 @@ for current_hash in sha1_hash_file:
 # Step 6: If we do not find a match by the end of our password wordlist, print that a match was not found.
   if (crack_found == False):
     print("Password not in database, we'll get them next time.")
+
+#end the exec timer
+end = timer()
+print(end - start) #time in seconds
