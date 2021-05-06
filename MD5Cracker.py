@@ -4,8 +4,8 @@
 import time
 import hashlib
 import sys
-import urllib2
-import codecs
+from urllib.request import urlopen
+#import codecs
 
 #Start clock
 start = time.time()
@@ -15,13 +15,14 @@ start = time.time()
 #sol = "No Solution Found"
 
 #Get hased MD5 input from user
-password = raw_input("Input hashed MD5 password: ")
+password = input("Input hashed MD5 password: ")
 
 #Open filename from url
-filename = urllib2.urlopen('https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt')
+#filename = urllib.urlopen('https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt')
+filename = str(urlopen('https://raw.githubusercontent.com/danielmiessler/SecLists/master/Passwords/Common-Credentials/10-million-password-list-top-10000.txt').read(), 'utf-8')
 
 for guess in filename:
-	hashedGuess = hashlib.md5(bytes(guess,'utf-8')).hexdigest()
+	hashedGuess = hashlib.sha1(bytes(guess,'utf-8')).hexdigest()
 	#hashedGuess = getattr(hashlib, 'md5')(bytes(guess)).hexdigest()
 	
 
@@ -30,7 +31,7 @@ for guess in filename:
 
 		end = time.time()
 		t_time = str(round(end - start,3))
-		print "Total runtime was: ", t_time
+		print ("Total runtime was: ", t_time)
 		quit()
 
 	elif hashedGuess != password:
